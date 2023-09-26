@@ -16,3 +16,16 @@ steps:
   args:
   - 'push'
   - 'us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:$SHORT_SHA'
+
+  # This step applies the Kubernetes deployment and service configurations.
+- name: 'gcr.io/cloud-builders/kubectl'
+  id: Deploy
+  args:
+  - 'apply'
+  - '-f'
+  - 'deployment.yaml'  # Relative path to deployment.yaml
+  - '-f'
+  - 'service.yaml'    # Relative path to service.yaml
+  - '--record=true'
+  - '-n'
+  - 'namespace-name'           # Replace with the namespace where you want to deploy
