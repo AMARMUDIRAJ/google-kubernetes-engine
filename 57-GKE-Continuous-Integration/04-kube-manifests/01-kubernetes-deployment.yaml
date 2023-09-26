@@ -16,7 +16,7 @@ spec: # Dictionary
       containers: # List
         - name: myapp1-container
           #image: us-central1-docker.pkg.dev/kdaida123/myapps-repository/myapp1:d1c3b88
-          image: us-central1-docker.pkg.dev/kdaida123/myapps-repository/myapp1:3d5c45b
+          image: us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:v1
           ports: 
             - containerPort: 80  
     
