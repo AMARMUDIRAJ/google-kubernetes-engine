@@ -5,7 +5,7 @@ steps:
   args:
   - 'build'
   - '-t'
-  - 'us-central1-docker.pkg.dev/$PROJECT_ID/myapps-repository/myapp1:$SHORT_SHA'
+  - 'us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:$SHORT_SHA'
   - '.'
 
 # This step pushes the image to the Artifact Registry
@@ -15,4 +15,4 @@ steps:
   id: Push
   args:
   - 'push'
-  - 'us-central1-docker.pkg.dev/$PROJECT_ID/myapps-repository/myapp1:$SHORT_SHA'
+  - 'us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:$SHORT_SHA'
