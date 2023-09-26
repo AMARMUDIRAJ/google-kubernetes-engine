@@ -23,9 +23,9 @@ steps:
   args:
   - 'apply'
   - '-f'
-  - 'deployment.yaml'  # Relative path to deployment.yaml
+  - 'mydeployment.yaml'  # Relative path to deployment.yaml
   - '-f'
-  - 'service.yaml'    # Relative path to service.yaml
+  - 'lbs-service.yaml'    # Relative path to service.yaml
   - '--record=true'
   - '-n'
   - 'namespace-name'           # Replace with the namespace where you want to deploy
