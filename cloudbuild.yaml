@@ -23,9 +23,11 @@ steps:
   args:
   - 'apply'
   - '-f'
-  - 'mydeployment.yaml'  # Relative path to deployment.yaml
+  - 'mydeployment.yaml'
   - '-f'
-  - 'lbs-service.yaml'    # Relative path to service.yaml
+  - 'lbs-service.yaml'
   - '--record=true'
   - '-n'
-  - 'namespace-name'           # Replace with the namespace where you want to deploy
+  - 'namespace-name'
+  - '--region=us-central1'  # Replace with your cluster's region
+  - '--context=gke_source-test-project_us-central1_standard-cluster-private-1'
