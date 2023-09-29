@@ -20,8 +20,6 @@ spec:
           ports:
             - containerPort: 80
           imagePullPolicy: Always  # Set to "Always" to always pull the latest image
-      # Define environment variables
-      # This environment variable will determine the image tag to use
-      env:
-        - name: TAG_NAME
-          value: latest # Default tag is "latest"; change it as needed
+          env:
+            - name: TAG_NAME
+              value: latest # Default tag is "latest"; change it as needed
