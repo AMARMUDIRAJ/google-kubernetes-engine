@@ -1,36 +1,39 @@
 steps:
-  # This step builds the container change made in the image.
+  # This step sets the TAG_NAME environment variable
+  - name: 'gcr.io/cloud-builders/gcloud'
+    entrypoint: 'bash'
+    args:
+      - '-c'
+      - |
+        echo "TAG_NAME=latest" >> $CONFIG_DIR/params.env
+
+  # This step builds the container and pushes it with the specified tag
   - name: 'gcr.io/cloud-builders/docker'
     id: Build
     args:
-    - 'build'
-    - '-t'
-    - 'us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:$SHORT_SHA'
-    - '.'
+      - 'build'
+      - '-t'
+      - 'us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:$SHORT_SHA'
+      - '.'
 
-  # This step pushes the image to the Artifact Registry
   - name: 'gcr.io/cloud-builders/docker'
     id: Push
     args:
-    - 'push'
-    - 'us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:$SHORT_SHA'
+      - 'push'
+      - 'us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:$SHORT_SHA'
 
   # This step applies the Kubernetes deployment and service configurations.
   - name: 'gcr.io/cloud-builders/kubectl'
     id: Deploy
     args:
-    - 'apply'
-    - '-f'
-    - 'mydeployment.yaml'
-    - '-f'
-    - 'lbs-service.yaml'
-    - '--record=true'
-    # - '-n'
-    # - 'namespace-name'
-  #  - '--region=us-central1'
+      - 'apply'
+      - '-f'
+      - 'mydeployment.yaml'
+      - '-f'
+      - 'lbs-service.yaml'
+      - '--record=true'
 
     # Set environment variables for this step
     env:
-     - 'CLOUDSDK_COMPUTE_REGION=us-central1'  # Replace with your cluster's region
-     - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-private-1'  # Replace with your cluster name
-     - 'TAG_NAME=latest'
+      - 'CLOUDSDK_COMPUTE_REGION=us-central1'  # Replace with your cluster's region
+      - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-private-1'  # Replace with your cluster name
