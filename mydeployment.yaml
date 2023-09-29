@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: myapp1-container
-          image: us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:v1
+          image: us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1
           ports:
             - containerPort: 80
           imagePullPolicy: Always  # Set to "Always" to always pull the latest image
