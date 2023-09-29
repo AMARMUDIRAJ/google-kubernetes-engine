@@ -15,8 +15,7 @@ spec:
     spec:
       containers:
         - name: myapp1-container
-          # Set the image with the dynamically set tag
-          image: us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:$(TAG_NAME)
+     
+          image: us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:16900c1
           ports:
             - containerPort: 80
-          imagePullPolicy: Always
