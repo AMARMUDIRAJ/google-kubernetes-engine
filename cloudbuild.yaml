@@ -5,7 +5,7 @@ steps:
     args:
       - '-c'
       - |
-        echo "TAG_NAME=latest" >> $CONFIG_DIR/params.env
+        echo "export TAG_NAME=latest" >> /workspace/tag.env
 
   # This step builds the container and pushes it with the specified tag
   - name: 'gcr.io/cloud-builders/docker'
@@ -33,7 +33,8 @@ steps:
       - 'lbs-service.yaml'
       - '--record=true'
 
-    # Set environment variables for this step
+    # Set the TAG_NAME environment variable from the file
     env:
+      - 'TAG_NAME=$(cat /workspace/tag.env)'
       - 'CLOUDSDK_COMPUTE_REGION=us-central1'  # Replace with your cluster's region
       - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-private-1'  # Replace with your cluster name
