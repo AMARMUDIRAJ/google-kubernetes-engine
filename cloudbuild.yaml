@@ -1,5 +1,5 @@
 steps:
-# This step builds the container change made the image.
+# This step builds the container change made in the image.
 - name: 'gcr.io/cloud-builders/docker'
   id: Build
   args:
@@ -19,15 +19,18 @@ steps:
 
   # This step applies the Kubernetes deployment and service configurations.
 - name: 'gcr.io/cloud-builders/kubectl'
-  id: Deploy
-  args:
-  - 'apply'
-  - '-f'
-  - 'mydeployment.yaml'
-  - '-f'
-  - 'lbs-service.yaml'
-  - '--record=true'
-  - '-n'
-  - 'namespace-name'
-  - '--region=us-central1'  # Replace with your cluster's region
-  - '--context=gke_source-test-project_us-central1_standard-cluster-private-1'
+    id: Deploy
+    args:
+    - 'apply'
+    - '-f'
+    - 'mydeployment.yaml'
+    - '-f'
+    - 'lbs-service.yaml'
+    - '--record=true'
+    - '-n'
+    - 'namespace-name'
+    - '--region=us-central1'
+
+  env:
+    - 'CLOUDSDK_COMPUTE_REGION=us-central1'  # Replace with your cluster's region
+    - 'CLOUDSDK_CONTAINER_CLUSTER=standard-cluster-private-1'  # Replace with your cluster name
