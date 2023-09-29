@@ -15,7 +15,13 @@ spec:
     spec:
       containers:
         - name: myapp1-container
-          image: us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:latest
+          # Set the image with an environment variable
+          image: us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:${TAG_NAME}
           ports:
             - containerPort: 80
           imagePullPolicy: Always  # Set to "Always" to always pull the latest image
+      # Define environment variables
+      # This environment variable will determine the image tag to use
+      env:
+        - name: TAG_NAME
+          value: latest # Default tag is "latest"; change it as needed
