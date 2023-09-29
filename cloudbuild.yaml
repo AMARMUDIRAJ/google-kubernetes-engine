@@ -27,7 +27,7 @@ steps:
     - '--record=true'
     - '-n'
     - 'namespace-name'
-    - '--region=us-central1'
+  #  - '--region=us-central1'
 
     # Set environment variables for this step
     env:
