@@ -15,8 +15,8 @@ spec:
     spec:
       containers:
         - name: myapp1-container
-          # Set the image with the desired tag
-          image: us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:latest
+          # Set the image with the dynamically set tag
+          image: us-central1-docker.pkg.dev/source-test-project/my-test-registry/myapp1:$(TAG_NAME)
           ports:
             - containerPort: 80
-          imagePullPolicy: Always  # Set to "Always" to always pull the latest image
+          imagePullPolicy: Always
